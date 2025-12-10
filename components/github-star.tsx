@@ -6,11 +6,7 @@ import React from 'react'
 import { buttonVariants } from './ui/button'
 import { Icons } from './icons'
 
-export default function GithubStarBtn({
-  className,
-}: {
-  className?: string
-}) {
+export default function GithubStarBtn({ className }: { className?: string }) {
   return (
     <Link
       className={cn(
@@ -23,7 +19,7 @@ export default function GithubStarBtn({
       )}
       target="_blank"
       rel="noopener noreferrer"
-      href={'https://github.com/huzaifahmedz'}
+      href={'https://github.com/godwinjoseph007/Godwin-Portfilo'}
     >
       <div className="flex items-center">
         <Icons.Github />
