@@ -9,7 +9,7 @@ import { Toaster } from '@/components/ui/sonner'
 import { ViewTransitions } from 'next-view-transitions'
 import React, { Suspense } from 'react'
 import Script from 'next/script'
-import { Locales, routing } from '@/i18n/routing'
+import { routing } from '@/i18n/routing'
 import { notFound } from 'next/navigation'
 import { getMessages, setRequestLocale } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
@@ -87,10 +87,10 @@ export function generateStaticParams() {
 export default async function RootLayout({
   children,
   params,
-}: Readonly<{
+}: {
   children: React.ReactNode
-  params: Promise<{ locale: Locales }>
-}>) {
+  params: Promise<{ locale: string }>
+}) {
   function personJsonLd() {
     return {
       __html: `
@@ -106,7 +106,7 @@ export default async function RootLayout({
     }
   }
   const { locale } = await params
-  if (!routing.locales.includes(locale)) {
+  if (!routing.locales.includes(locale as (typeof routing.locales)[number])) {
     notFound()
   }
   const messages = await getMessages()
@@ -144,7 +144,7 @@ export default async function RootLayout({
               disableTransitionOnChange
             >
               <Suspense>
-                <Topbar locale={locale} />
+                <Topbar locale={locale as (typeof routing.locales)[number]} />
               </Suspense>
               <main className="min-h-screen">{children}</main>
               <Footer />
