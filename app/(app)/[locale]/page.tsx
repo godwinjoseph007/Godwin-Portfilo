@@ -15,6 +15,7 @@ import { SocialsSection } from './_components/SocialsSection'
 import { Locales, routing } from '@/i18n/routing'
 import { setRequestLocale } from 'next-intl/server'
 import { useTranslations } from 'next-intl'
+import DownloadResumeButton from '@/components/DownloadResumeButton'
 
 export const experimental_ppr = true
 
@@ -80,13 +81,7 @@ export default function Home({
                       {t('contactBtn')}
                     </Button>
                   </Link>
-                  <Button
-                    className="cursor-pointer"
-                    variant={'outline'}
-                    disabled
-                  >
-                    {t('downloadCvBtn')}
-                  </Button>
+                  <DownloadResumeButton />
                 </div>
                 <div className="flex items-center gap-2 mt-4">
                   <Badge
